@@ -1,0 +1,52 @@
+@startuml Project1
+Student <|-- Instate
+Student <|-- Outstate
+Student <|-- International
+TuitionManager o-- StudentList
+Prog2 o-- TuitionManager
+
+class Prog2{
+    +{static} main(String[] args): void
+}
+
+class Student{
+    -fname : String
+    -lname : String
+    #credit : int
+    +compareTo(obj) : int
+    +toString() : String
+    +{abstract}tuitionDue() : int
+}
+class StudentList{
+    -numStudents : int
+    -studentList : Student[]
+    -contains(Student s) : boolean
+    +void add(Student s)
+    -find(Student s) : int
+    + remove(Student s) : boolean
+    -void grow()
+    +void print()
+}
+Student "0..*" -- "1..*" StudentList
+class Instate{
+    -funds : int
+    +tuitionDue() : int
+    +toString() : String
+}
+class Outstate{
+    -tristate : boolean
+    +tuitionDue() : int
+    +toString() : String
+}
+class International{
+    -exchange : boolean
+    +tuitionDue() : int
+    +toString() : String
+}
+class TuitionManager{
+    +void run()
+    -void add()
+    -void remove()
+    -void print()
+}
+@enduml
